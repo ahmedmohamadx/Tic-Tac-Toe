@@ -1,14 +1,9 @@
 #include <iostream>
 #include <vector>
 #include <string>
-
 using namespace std;
-
-// ========== المتغيرات العامة ==========
 char board[3][3];
 char currentPlayer;
-
-// ========== تهيئة اللوحة ==========
 void initBoard() {
     int num = 1;
     for (int i = 0; i < 3; i++)
@@ -17,7 +12,6 @@ void initBoard() {
     currentPlayer = 'X';
 }
 
-// ========== عرض اللوحة ==========
 void displayBoard() {
     cout << "\n";
     cout << "  +-----------+\n";
@@ -37,7 +31,7 @@ void displayBoard() {
     cout << "\n";
 }
 
-// ========== اللاعب يختار خانة ==========
+
 bool makeMove(int choice) {
     int row = (choice - 1) / 3;
     int col = (choice - 1) % 3;
@@ -49,21 +43,18 @@ bool makeMove(int choice) {
     return false;
 }
 
-// ========== تحقق من الفائز ==========
+
 bool checkWin() {
-    // فحص الصفوف والأعمدة
     for (int i = 0; i < 3; i++) {
         if (board[i][0] == board[i][1] && board[i][1] == board[i][2]) return true;
         if (board[0][i] == board[1][i] && board[1][i] == board[2][i]) return true;
     }
-    // فحص الأقطار
     if (board[0][0] == board[1][1] && board[1][1] == board[2][2]) return true;
     if (board[0][2] == board[1][1] && board[1][1] == board[2][0]) return true;
 
     return false;
 }
 
-// ========== تحقق من التعادل ==========
 bool checkDraw() {
     for (int i = 0; i < 3; i++)
         for (int j = 0; j < 3; j++)
@@ -72,7 +63,6 @@ bool checkDraw() {
     return true;
 }
 
-// ========== تبديل اللاعب ==========
 void switchPlayer() {
     if (currentPlayer == 'X')
         currentPlayer = 'O';
@@ -80,7 +70,6 @@ void switchPlayer() {
         currentPlayer = 'X';
 }
 
-// ========== البرنامج الرئيسي ==========
 int main() {
     string playAgain;
 
@@ -103,7 +92,6 @@ int main() {
             cout << "Player " << currentPlayer << ", enter your move (1-9): ";
             cin >> move;
 
-            // تحقق من صحة الإدخال
             if (move < 1 || move > 9) {
                 cout << "[!] Invalid input. Choose a number between 1 and 9.\n";
                 continue;
